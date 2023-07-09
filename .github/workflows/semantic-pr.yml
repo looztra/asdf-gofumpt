@@ -1,4 +1,4 @@
-name: Lint
+name: Semantic PR checks
 
 on:
   pull_request_target:
@@ -6,6 +6,10 @@ on:
       - opened
       - edited
       - synchronize
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   semantic-pr:
